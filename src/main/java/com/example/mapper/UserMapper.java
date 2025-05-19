@@ -1,9 +1,11 @@
 package com.example.mapper;
 
+import com.example.domain.Role;
 import com.example.domain.User;
 import com.example.dto.UserDTO;
 
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class UserMapper {
 
@@ -18,6 +20,6 @@ public class UserMapper {
     }
 
     public UserDTO userToUserDTO(User user) {
-        return new UserDTO(user.getId(), user.getUsername());
+        return new UserDTO(user.getId(), user.getUsername(), user.getRoles().stream().map(Role::getName).toList().toArray(new String[0]));
     }
 }

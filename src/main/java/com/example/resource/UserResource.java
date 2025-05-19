@@ -9,8 +9,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.SecurityContext;
 
-@Path("/api/v1/user")
-@RolesAllowed("USER")
+@Path("/api/v1/users")
+@RolesAllowed({ "USER", "ADMIN" })
 public class UserResource {
 
     private final UserService userService;
@@ -20,7 +20,7 @@ public class UserResource {
     }
 
     @GET
-    public GenericResponse<UserDTO> getUserData(@Context SecurityContext securityContext) {
+    public GenericResponse<UserDTO> getAuthenticatedUser(@Context SecurityContext securityContext) {
         return GenericResponse.ok(userService.getUserUsername(securityContext.getUserPrincipal().getName()));
     }
 }

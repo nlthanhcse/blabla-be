@@ -1,8 +1,6 @@
 package com.example.resource;
 
-import com.example.dto.UserDTO;
 import com.example.response.GenericResponse;
-import com.example.service.UserService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -13,14 +11,10 @@ import jakarta.ws.rs.core.SecurityContext;
 @RolesAllowed("ADMIN")
 public class AdminResource {
 
-    private final UserService userService;
-
-    public AdminResource(UserService userService) {
-        this.userService = userService;
-    }
-
-    @GET
-    public GenericResponse<UserDTO> getAdminData(@Context SecurityContext securityContext) {
-        return GenericResponse.ok(userService.getUserUsername(securityContext.getUserPrincipal().getName()));
+    @GET()
+    public GenericResponse<String> getAdminData(@Context SecurityContext securityContext) {
+        return GenericResponse.ok(
+                "Hallo ADMIN \"" + securityContext.getUserPrincipal().getName() + "\", this is your secret text!!!"
+        );
     }
 }
