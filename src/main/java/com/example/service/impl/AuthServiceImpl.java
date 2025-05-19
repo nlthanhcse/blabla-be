@@ -1,6 +1,5 @@
 package com.example.service.impl;
 
-import com.example.domain.Role;
 import com.example.domain.User;
 import com.example.dto.AuthDTO;
 import com.example.exception.BadCredentialsException;
@@ -13,8 +12,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
-import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

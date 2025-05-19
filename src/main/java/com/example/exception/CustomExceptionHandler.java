@@ -15,6 +15,8 @@ public class CustomExceptionHandler implements ExceptionMapper<Exception> {
 
         if (e instanceof BadCredentialsException) {
             response = GenericResponse.unauthorized();
+        } else if (e instanceof UserNotFoundException) {
+            response = GenericResponse.notFound(new String[] { e.getMessage() });
         }
 
         return Response
